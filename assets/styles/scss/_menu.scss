@@ -1,0 +1,19 @@
+.modal-backdrop {
+    .modal-panel {
+        &.menu-modal {
+            margin: auto;
+            position: absolute;
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+
+            .modal-header {
+                .modal-title {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
