@@ -9,16 +9,18 @@ interface IProps {
     backgroundDismiss?: boolean,
     closeButton?: any,
     styles?: any,
-    class?: string 
+    class?: string,
 }
 
 const Modal = (props: React.PropsWithChildren<IProps>) => {
 
     // states
-    let [show, setShow] = React.useState(props.show);
-    let [coords, setCoords] = React.useState({});
+    const [show, setShow] = React.useState(props.show);
 
+    // ref 
+    const ModalBackdrop = React.useRef(null);
 
+    // callback on change show state
     React.useEffect(() => {
         show ? onOpen() : onClose()
     }, [show])
@@ -39,14 +41,23 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
         }
     }
 
+    // on click modal or backdrop 
+    const handleClick = (e: React.MouseEvent) => {
+        if (props.backgroundDismiss != undefined && props.backgroundDismiss) {
+            if (e.target == ModalBackdrop.current) {
+                setShow(false);
+            }
+        }
+    }
 
     const renderModal = () => {
         return (<>
             <PortalContainer>
-                <div className="modal-backdrop" >
 
-                    <div className={`modal-panel ${props.class || ""}`} 
-                     style={...props.styles|| {}}>
+                <div className="modal-backdrop" ref={ModalBackdrop} onClick={(e) => handleClick(e)} >
+
+                    <div className={`modal-panel ${props.class || ""}`}
+                        style={...props.styles || {}}>
 
                         <div className="modal-header">
                             <div className="modal-title"> {props.title}</div>

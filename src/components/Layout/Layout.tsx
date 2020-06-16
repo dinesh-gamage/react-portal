@@ -9,18 +9,16 @@ interface IProps {
 
 const Layout = (props: React.PropsWithChildren<IProps>) => {
 
-    let [showModal, setShowModal] = React.useState(true);
+    let [showModal, setShowModal] = React.useState(false);
     let root = document.getElementById("root");
 
     const onOpenModal = () => {
         console.log("opening modal");
-        // root.classList.add("blurred");
     }
 
     const onCloseModal = () => {
         setShowModal(false);
         console.log("closing modal");
-        // root.classList.remove("blurred");
     }
 
     return (<>
@@ -34,16 +32,16 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
         {
             showModal ?
-                // <Modal
-                //     show={showModal}
-                //     title="Modal"
-                //     onOpen={onOpenModal}
-                //     onClose={onCloseModal}
-                // >
-                //     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate tempore velit vero aliquid omnis, nobis quisquam nihil beatae exercitationem error iure mollitia non modi ex similique nesciunt magni praesentium consequatur!
-                // </Modal>
+                <>
+                    <Menu
+                        onOpen={onOpenModal}
+                        onClose={onCloseModal}
 
-                <Menu onOpen={onOpenModal} onClose={onCloseModal} ></Menu>
+                    >
+
+                    </Menu>
+
+                </>
                 : null
         }
 

@@ -99,31 +99,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "react");
 const Menu_1 = __webpack_require__(/*! ../Menu/Menu */ "./src/components/Menu/Menu.tsx");
 const Layout = (props) => {
-    let [showModal, setShowModal] = React.useState(true);
+    let [showModal, setShowModal] = React.useState(false);
     let root = document.getElementById("root");
     const onOpenModal = () => {
         console.log("opening modal");
-        // root.classList.add("blurred");
     };
     const onCloseModal = () => {
         setShowModal(false);
         console.log("closing modal");
-        // root.classList.remove("blurred");
     };
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: "container" },
             React.createElement("div", { className: "modal-container" },
                 React.createElement("div", { className: "btn", onClick: () => setShowModal(true) }, "Show Modal"))),
         showModal ?
-            // <Modal
-            //     show={showModal}
-            //     title="Modal"
-            //     onOpen={onOpenModal}
-            //     onClose={onCloseModal}
-            // >
-            //     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate tempore velit vero aliquid omnis, nobis quisquam nihil beatae exercitationem error iure mollitia non modi ex similique nesciunt magni praesentium consequatur!
-            // </Modal>
-            React.createElement(Menu_1.default, { onOpen: onOpenModal, onClose: onCloseModal })
+            React.createElement(React.Fragment, null,
+                React.createElement(Menu_1.default, { onOpen: onOpenModal, onClose: onCloseModal }))
             : null));
 };
 exports.default = Layout;
@@ -136,116 +127,9 @@ exports.default = Layout;
   !*** ./src/components/Menu/Menu.tsx ***!
   \**************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "react");
-const Modal_1 = __webpack_require__(/*! ../Portal/Modal */ "./src/components/Portal/Modal.tsx");
-const Menu = (props) => {
-    return (React.createElement(React.Fragment, null,
-        React.createElement(Modal_1.default, { show: true, title: "Menu", onOpen: props.onOpen, onClose: props.onClose, class: "menu-modal" })));
-};
-exports.default = Menu;
-
-
-/***/ }),
-
-/***/ "./src/components/Portal/Modal.tsx":
-/*!*****************************************!*\
-  !*** ./src/components/Portal/Modal.tsx ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "react");
-const Portal_1 = __webpack_require__(/*! ./Portal */ "./src/components/Portal/Portal.tsx");
-const Modal = (props) => {
-    // states
-    let [show, setShow] = React.useState(props.show);
-    let [coords, setCoords] = React.useState({});
-    React.useEffect(() => {
-        show ? onOpen() : onClose();
-    }, [show]);
-    //on modal toggle
-    // open
-    const onOpen = () => {
-        if (typeof props.onOpen === "function") {
-            props.onOpen();
-        }
-    };
-    // close
-    const onClose = () => {
-        if (typeof props.onClose === "function") {
-            props.onClose();
-        }
-    };
-    const renderModal = () => {
-        return (React.createElement(React.Fragment, null,
-            React.createElement(Portal_1.default, null,
-                React.createElement("div", { className: "modal-backdrop" },
-                    React.createElement("div", { className: `modal-panel ${props.class || ""}`, style: props.styles || {} },
-                        React.createElement("div", { className: "modal-header" },
-                            React.createElement("div", { className: "modal-title" },
-                                " ",
-                                props.title),
-                            React.createElement("div", { className: "modal-close", onClick: () => setShow(false) }, props.closeButton !== undefined ?
-                                React.createElement(React.Fragment, null, props.closeButton)
-                                :
-                                    React.createElement("div", { className: "close-btn" }))),
-                        React.createElement("div", { className: "modal-body" }, props.children))))));
-    };
-    return (React.createElement(React.Fragment, null, show ? renderModal()
-        : null));
-};
-Modal.defaultProps = {
-    backgroundDismiss: true
-};
-exports.default = Modal;
-
-
-/***/ }),
-
-/***/ "./src/components/Portal/Portal.tsx":
-/*!******************************************!*\
-  !*** ./src/components/Portal/Portal.tsx ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "react");
-const ReactDom = __webpack_require__(/*! react-dom */ "react-dom");
-const PortalContainer = (props) => {
-    // root
-    let rootElement = document.getElementById('portal-root');
-    if (rootElement === null) {
-        rootElement = document.createElement('div');
-        rootElement.setAttribute("id", 'portal-root');
-        document.body.appendChild(rootElement);
-    }
-    // wrapper
-    let wrapper = document.createElement("div");
-    // bind, unbind
-    React.useEffect(() => {
-        rootElement.appendChild(wrapper);
-        return () => rootElement.removeChild(wrapper);
-    }, [rootElement, wrapper]);
-    // render content
-    const renderPortal = () => {
-        return (React.createElement(React.Fragment, null, props.children));
-    };
-    // return
-    return ReactDom.createPortal(renderPortal(), rootElement);
-};
-exports.default = PortalContainer;
-
+throw new Error("Module build failed (from ./node_modules/ts-loader/index.js):\nError: ENOENT: no such file or directory, open 'D:\\sample-projects\\React\\react-portal\\src\\components\\Menu\\Menu.tsx'");
 
 /***/ }),
 
