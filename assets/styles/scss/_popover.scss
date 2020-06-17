@@ -1,16 +1,31 @@
-.tooltip {
+.popover {
     display: inline;
 }
 
-.tooltip-content {
+.popover-content {
     position: fixed;
     width: auto;
     height: auto;
     border-radius: 6px;
     background-color: white;
-    padding: 10px 15px;
+    padding: 0px;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
     -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+
+    .title {
+        width: 100%;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+        width: 100%;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px 15px;
+    }
 
     &::before {
         content: "";

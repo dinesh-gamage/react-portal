@@ -2,6 +2,7 @@ import * as React from 'react';
 import PortalContainer from '../Portal/Portal';
 import Modal from '../Portal/Modal';
 import Tooltip from '../Portal/Tooltip';
+import Popover from '../Portal/PopOver';
 
 interface IProps {
 
@@ -27,7 +28,7 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
             <div className="modal-container">
                 <div className="btn" onClick={() => setShowModal(true)}>Show Modal</div>
 
-                <div>
+                <div className="row">
                     <button>
                         <Tooltip position="top" content="Tooltip top">Tooltip Top</Tooltip>
                     </button>
@@ -42,6 +43,27 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
                     <button>
                         <Tooltip position="right" content="Tooltip right">Tooltip right</Tooltip>
+                    </button>
+                </div>
+
+                <div  className="row">
+                    <button>
+                        <Popover position="top" title="Popover title" content="Popover content top">popover Top</Popover>
+                    </button>
+
+                    <button>
+                    <Popover position="bottom" title="Popover title" content="Popover content bottom">popover bottom</Popover>
+
+                    </button>
+
+                    <button>
+                    <Popover position="left" title="Popover title" content="Popover content left">popover left</Popover>
+
+                    </button>
+
+                    <button>
+                    <Popover position="right" title="Popover title" content="Popover content right">popover right</Popover>
+
                     </button>
                 </div>
 

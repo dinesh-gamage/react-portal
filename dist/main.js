@@ -99,6 +99,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "react");
 const Modal_1 = __webpack_require__(/*! ../Portal/Modal */ "./src/components/Portal/Modal.tsx");
 const Tooltip_1 = __webpack_require__(/*! ../Portal/Tooltip */ "./src/components/Portal/Tooltip.tsx");
+const PopOver_1 = __webpack_require__(/*! ../Portal/PopOver */ "./src/components/Portal/PopOver.tsx");
 const Layout = (props) => {
     let [showModal, setShowModal] = React.useState(false);
     let root = document.getElementById("root");
@@ -113,7 +114,7 @@ const Layout = (props) => {
         React.createElement("div", { className: "container" },
             React.createElement("div", { className: "modal-container" },
                 React.createElement("div", { className: "btn", onClick: () => setShowModal(true) }, "Show Modal"),
-                React.createElement("div", null,
+                React.createElement("div", { className: "row" },
                     React.createElement("button", null,
                         React.createElement(Tooltip_1.default, { position: "top", content: "Tooltip top" }, "Tooltip Top")),
                     React.createElement("button", null,
@@ -121,7 +122,16 @@ const Layout = (props) => {
                     React.createElement("button", null,
                         React.createElement(Tooltip_1.default, { position: "left", content: "Tooltip left" }, "Tooltip left")),
                     React.createElement("button", null,
-                        React.createElement(Tooltip_1.default, { position: "right", content: "Tooltip right" }, "Tooltip right"))))),
+                        React.createElement(Tooltip_1.default, { position: "right", content: "Tooltip right" }, "Tooltip right"))),
+                React.createElement("div", { className: "row" },
+                    React.createElement("button", null,
+                        React.createElement(PopOver_1.default, { position: "top", title: "Popover title", content: "Popover content top" }, "popover Top")),
+                    React.createElement("button", null,
+                        React.createElement(PopOver_1.default, { position: "bottom", title: "Popover title", content: "Popover content bottom" }, "popover bottom")),
+                    React.createElement("button", null,
+                        React.createElement(PopOver_1.default, { position: "left", title: "Popover title", content: "Popover content left" }, "popover left")),
+                    React.createElement("button", null,
+                        React.createElement(PopOver_1.default, { position: "right", title: "Popover title", content: "Popover content right" }, "popover right"))))),
         showModal ?
             React.createElement(Modal_1.default, { show: showModal, title: "Modal", onOpen: onOpenModal, onClose: onCloseModal }, "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur porro et sequi saepe aliquam ipsa laborum perspiciatis fugiat enim aliquid distinctio eveniet harum, voluptatem cumque libero error nostrum eaque vel? Assumenda ullam, sequi laudantium aperiam neque ducimus odio accusantium nesciunt, tempore rem doloremque inventore quisquam. Voluptatibus, suscipit quibusdam fugiat voluptatem architecto, non possimus voluptatum enim saepe pariatur modi reprehenderit perferendis. Eos error accusamus veniam quia quod dolores delectus sequi beatae quo similique magni porro aut temporibus, ea voluptate atque possimus, repellat odio, dolorum voluptates ullam exercitationem molestiae! Debitis, architecto consequatur. Debitis aut, eligendi suscipit pariatur praesentium ratione! Omnis consequatur esse consectetur impedit aspernatur magni illo rerum. Consectetur illo repudiandae dolores, reiciendis nesciunt incidunt inventore esse, minus eius odio quisquam laboriosam? Eaque eum ipsam nobis facere minima tempore et quis soluta dicta deserunt ea fugiat ad at cumque eligendi possimus, id ducimus doloribus explicabo velit dignissimos ut quidem praesentium. Repudiandae, dolorem. Veniam veritatis corporis voluptas molestias. Itaque nesciunt perferendis illo minus? Beatae, nemo. Exercitationem, quis dolorum. Ratione, culpa! Repudiandae fugit, aut vel quidem tempore vitae odio? Facilis voluptatibus nam ut quae! Nostrum ducimus blanditiis, libero dolorem, nam quod expedita voluptates id laborum ipsum itaque! Pariatur accusamus eos quaerat, nam nemo qui necessitatibus maxime recusandae, illo, vel tempora quibusdam saepe earum voluptatem! Quo, aliquid natus odit, delectus vero porro itaque illo quae quibusdam consectetur ab maiores beatae asperiores? Animi laboriosam beatae error, commodi soluta laudantium expedita totam quod earum aperiam, veritatis corrupti. Atque unde eaque ea distinctio quis esse voluptatum voluptates numquam natus delectus iste tempora a nisi rem fuga consectetur minima, maiores ullam enim perspiciatis, fugiat suscipit est? Dolor, repudiandae vitae? Neque nesciunt placeat at consequatur perferendis temporibus minus dicta delectus, maxime deserunt quaerat corporis autem exercitationem vero magnam eius sapiente! Perspiciatis placeat atque fuga molestias numquam, facilis officiis sunt nostrum? Quos repellendus facere a et facilis repellat aliquam vero cupiditate libero. Minima mollitia nihil odio, repudiandae, quasi, non libero iste consectetur quisquam itaque aspernatur voluptatem. Labore consequatur vel suscipit culpa? Numquam architecto aspernatur magni officia molestiae tempora harum excepturi aliquam non autem est, praesentium necessitatibus dolorum tenetur. Impedit voluptatem non accusamus? Impedit neque aut quos eligendi quisquam saepe ipsum velit? Amet, doloremque. Error, ipsam voluptate! Totam veritatis vel accusantium, qui aliquid saepe voluptas consectetur ad natus! Animi error ut harum repellat a laborum rem, ducimus doloribus nam minima velit sit. Nihil provident impedit rem et dolorum ab numquam. Esse doloremque vero placeat provident veniam impedit, assumenda explicabo aliquid debitis fugiat hic enim excepturi et quos dicta molestiae sit ipsa quidem. Rem sapiente ratione voluptatem, sint saepe harum cupiditate, repellat quas nam sequi officiis dolore ab adipisci perferendis expedita impedit fuga a earum molestiae doloremque. Aut nulla ratione porro obcaecati laudantium! Omnis amet distinctio tenetur aliquam eaque totam dolorem! Doloribus corporis quos totam quae animi fuga. Et ducimus nam, doloribus commodi dolores doloremque! Laboriosam, harum accusamus at laudantium ad suscipit nostrum! Totam vitae nihil eum facere consequuntur alias optio, laborum illum, ipsum quaerat et explicabo ratione earum adipisci porro veritatis sunt corrupti in voluptatibus tenetur sint! Tempora perferendis sunt voluptate accusamus. Praesentium vitae, id ut quos maxime at pariatur aliquid nam assumenda voluptates iste est odit fuga in magni ducimus soluta voluptatem, ab optio similique fugiat perferendis ex quas? Facere, praesentium. Perspiciatis consectetur quibusdam facilis sunt non officiis nihil provident molestiae laborum perferendis velit commodi, porro asperiores ad tempore, explicabo dolorem? Illum, ullam assumenda fugiat velit similique quibusdam vel reiciendis soluta. Tempora ducimus nostrum quo quibusdam reiciendis qui expedita debitis perspiciatis sint vero, aperiam quia delectus, quos obcaecati laborum aut repellat nesciunt et accusamus in sapiente hic natus odit laboriosam! Atque.")
             : null));
@@ -195,6 +205,74 @@ Modal.defaultProps = {
     backgroundDismiss: true
 };
 exports.default = Modal;
+
+
+/***/ }),
+
+/***/ "./src/components/Portal/PopOver.tsx":
+/*!*******************************************!*\
+  !*** ./src/components/Portal/PopOver.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(/*! react */ "react");
+const Portal_1 = __webpack_require__(/*! ./Portal */ "./src/components/Portal/Portal.tsx");
+const Popover = (props) => {
+    // state 
+    const [show, setShow] = React.useState(false);
+    const [coords, setCoords] = React.useState({});
+    // toggle tooltip
+    const toggleTooltip = (button) => {
+        const buttonDetails = button.getBoundingClientRect();
+        let position = props.position || "top";
+        let _coords = {};
+        switch (position) {
+            case "top":
+                _coords = {
+                    left: buttonDetails.x + buttonDetails.width / 2,
+                    top: buttonDetails.top - 15
+                };
+                break;
+            case "bottom":
+                _coords = {
+                    left: buttonDetails.x + buttonDetails.width / 2,
+                    top: buttonDetails.bottom + 15
+                };
+                break;
+            case "right":
+                _coords = {
+                    left: buttonDetails.x + buttonDetails.width + 15,
+                    top: buttonDetails.y + buttonDetails.height / 2
+                };
+                break;
+            case "left":
+                _coords = {
+                    left: buttonDetails.x - 15,
+                    top: buttonDetails.y + buttonDetails.height / 2
+                };
+                break;
+        }
+        setCoords(_coords);
+        setShow(!show);
+    };
+    // render tooltip
+    const renderTooltip = () => {
+        return (React.createElement(Portal_1.default, null,
+            React.createElement("div", { className: `popover-content ${props.position || "top"} `, style: coords },
+                React.createElement("div", { className: "title" }, props.title),
+                React.createElement("div", { className: "content" }, props.content))));
+    };
+    return (React.createElement(React.Fragment, null,
+        React.createElement("span", { className: "popover", onClick: (e) => toggleTooltip(e.target) }, props.children),
+        show ?
+            renderTooltip()
+            : null));
+};
+exports.default = Popover;
 
 
 /***/ }),

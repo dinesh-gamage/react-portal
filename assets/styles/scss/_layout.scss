@@ -18,7 +18,8 @@ html,body,#root {
     .modal-container {
         position: absolute;
         width: 50%;
-        height: 100px;
+        min-height: 100px;
+        height: auto;
         top: 100px;
         left: 50%;
         transform: translateX(-50%);
@@ -41,6 +42,14 @@ html,body,#root {
             color: white;
             cursor: pointer;
             margin-bottom: 40px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            margin-bottom: 20px;
         }
     }
 }
