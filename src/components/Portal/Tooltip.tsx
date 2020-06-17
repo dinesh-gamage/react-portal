@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { render } from 'react-dom';
 import PortalContainer from './Portal';
 
 type IPosition = "top" | "bottom" | "left" | "right";
