@@ -25,17 +25,20 @@ html, body, #root {
   border-radius: 10px;
   padding: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: white;
 }
 .container .modal-container .btn {
   width: auto;
   height: auto;
   border-radius: 8px;
   padding: 15px 30px;
-  background-color: white;
+  background-color: black;
+  color: white;
   cursor: pointer;
+  margin-bottom: 40px;
 }
 
 .blurred {
@@ -121,17 +124,72 @@ html, body, #root {
   margin-bottom: 30px;
 }
 
-.modal-backdrop .modal-panel.menu-modal {
-  margin: auto;
-  position: absolute;
-  top: 30px;
-  bottom: 30px;
-  left: 30px;
-  right: 30px;
+.tooltip {
+  display: inline;
 }
-.modal-backdrop .modal-panel.menu-modal .modal-header .modal-title {
-  width: 100%;
-  text-align: center;
+
+.tooltip-content {
+  position: fixed;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  background-color: white;
+  padding: 20px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+.tooltip-content::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border-top: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  transform: translate(-50%, 0);
+}
+.tooltip-content.top {
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.tooltip-content.bottom {
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.tooltip-content.bottom::before {
+  top: -10px;
+  border-bottom: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: none;
+}
+.tooltip-content.right {
+  transform: translate(0, -50%);
+}
+.tooltip-content.right::before {
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  border-right: 10px solid white;
+  border-top: 10px solid transparent;
+  left: -10px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.tooltip-content.left {
+  transform: translate(-100%, -50%);
+}
+.tooltip-content.left::before {
+  border-bottom: 10px solid transparent;
+  border-right: none;
+  border-left: 10px solid white;
+  border-top: 10px solid transparent;
+  top: 50%;
+  left: 100%;
+  transform: translate(0, -50%);
 }
 
 /*# sourceMappingURL=styles.css.map */
