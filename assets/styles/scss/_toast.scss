@@ -1,18 +1,139 @@
+// variables
+$closeIcon: "";
+$checkIcon: "";
+
+$toastBg: #ffffff;
+$successColor: #52c9a9;
+
 .toast-container {
     position: fixed;
-    bottom: 0;
-    right: 0;
-    transform: translate(-50%, -50%);
     background: transparent;
     width: auto;
+    max-width: 300px;
     height: auto;
-    
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+
+
     .toast {
-        width: auto;
+        width: 100%;
         height: auto;
-        padding: 20px;
+        box-sizing: border-box;
+        padding: 12px;
         border-radius: 6px;
-        background-color: white;
-        margin: 10px;
+        background-color: $toastBg;
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        .icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: none;
+        }
+
+        .toast-content {
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            padding: 4px;
+
+            .title {
+                width: auto;
+                height: auto;
+                display: block;
+                font-weight: 900;
+                text-transform: uppercase;
+                padding: 4px 10px;
+                font-size: 14px;
+            }
+
+            .content {
+                width: auto;
+                height: auto;
+                display: block;
+                padding: 4px 10px;
+                font-size: 13px;
+            }
+        }
+
+        .close {
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: transparent;
+            background-image: url(/assets/images/close.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 40%;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.12);
+            }
+        }
+
+        &.success {
+            .icon {
+                display: block;
+                background-image: url(/assets/images/check.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 50%;
+                border: 1px solid $successColor;
+            }
+
+            .toast-content {
+                .title {
+                    color: $successColor;
+                }
+
+                .content {
+                    color: $successColor;
+                }
+            }
+        }
+    }
+
+    &.bottom-right {
+        bottom: 20px;
+        right: 20px;
+
+        .toast {
+            &.show {
+                animation: slide-in-right 0.6s;
+            }
+            &.hide {
+                animation: slide-to-right 0.6s;
+            }
+        }
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+@keyframes slide-to-right {
+    from {
+        left: 0;
+    }
+    to {
+        left: 100%;
     }
 }

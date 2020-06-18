@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useToast } from '.';
 
 // types
-type IType = 'success' | 'error' | 'info';
+type IType = 'success' | 'error' | 'info' | "custom";
 type IPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 interface IProps {
@@ -13,37 +13,48 @@ interface IProps {
     autoClose?: boolean,
     onClose?: any,
     closeAfter?: number,
-    position?: IPosition,
     instance: string,
 }
 
 const Toast = (props: React.PropsWithChildren<IProps>) => {
 
-    // 
-    const {remove} = useToast();
+    // toast remove method
+    const { remove } = useToast();
 
+    // ref 
+    const ToastRef = React.useRef(null);
 
     // on mount
     React.useEffect(() => {
-    
-        let timeout = setTimeout(() => {handleRemove()}, props.closeAfter);
-        return () => {clearTimeout(timeout)}
+
+        if (props.autoClose != undefined && props.autoClose) {
+            let timeout = setTimeout(() => { handleRemove() }, props.closeAfter);
+            return () => { clearTimeout(timeout) }
+        }
 
     }, [props.instance, remove])
 
 
     // handle remove
     const handleRemove = () => {
-        remove(props.instance)
 
-        if(typeof props.onClose == 'function') {
-            props.onClose();
-        }
+        ToastRef.current.classList.remove("show");
+        ToastRef.current.classList.add("hide");
+
+        setTimeout(() => {
+            remove(props.instance)
+
+            if (typeof props.onClose == 'function') {
+                props.onClose();
+            }
+        }, 500)
+
+
     }
 
     // return
     return (
-        <div className="toast">
+        <div className={`toast ${props.type} show`} ref={ToastRef}>
 
             <div className="icon"></div>
 
@@ -54,12 +65,12 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
 
             {
                 props.showCloseBtn ?
-                    <div className="close" onClick={handleRemove} >x</div>
+                    <div className="close" onClick={() => { handleRemove() }} ></div>
                     : null
             }
 
-        </div>
-    );
+        </div >
+    )
 
 }
 

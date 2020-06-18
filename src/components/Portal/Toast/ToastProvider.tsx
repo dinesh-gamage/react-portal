@@ -8,7 +8,12 @@ type IType = 'success' | 'error' | 'info';
 type IPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 // props 
-interface IProps { }
+interface IProps {
+    position?: IPosition,
+    showCloseBtn?: boolean,
+    autoClose?: boolean,
+    closeAfter?: number,
+}
 
 // toast content
 interface IContent {
@@ -18,8 +23,7 @@ interface IContent {
     showCloseBtn?: boolean,
     autoClose?: boolean,
     onClose?: any,
-    position?: IPosition,
-    closeAfter?: number
+    closeAfter?: number,
 }
 
 // toast 
@@ -90,7 +94,7 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
         <ToastContext.Provider value={providerValue} >
 
             <PortalContainer>
-                <div className="toast-container">
+                <div className={`toast-container ${props.position}`}>
                     {
                         toasts.map((toast: IToast, key: number) => renderToast(toast, key))
                     }
@@ -102,6 +106,10 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
         </ToastContext.Provider>
     );
 
+}
+
+ToastProvider.defaultProps ={
+    position: 'bottom-right',
 }
 
 export default ToastProvider;
