@@ -3,6 +3,9 @@ import Modal from '../Portal/Modal';
 import Tooltip from '../Portal/Tooltip';
 import Popover from '../Portal/PopOver';
 
+import { useToast } from '../Portal/Toast';
+import { ToastProvider } from '../Portal/Toast';
+
 interface IProps {
 
 }
@@ -11,6 +14,9 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
     let [showModal, setShowModal] = React.useState(false);
     let root = document.getElementById("root");
+
+
+    const Toast = useToast();
 
     const onOpenModal = () => {
         console.log("opening modal");
@@ -45,31 +51,38 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
                     </button>
                 </div>
 
-                <div  className="row">
+                <div className="row">
                     <button>
                         <Popover position="top" title="Popover title" content="Popover content top">popover Top</Popover>
                     </button>
 
                     <button>
-                    <Popover position="bottom" title="Popover title" content="Popover content bottom">popover bottom</Popover>
+                        <Popover position="bottom" title="Popover title" content="Popover content bottom">popover bottom</Popover>
 
                     </button>
 
                     <button>
-                    <Popover position="left" title="Popover title" content="Popover content left">popover left</Popover>
+                        <Popover position="left" title="Popover title" content="Popover content left">popover left</Popover>
 
                     </button>
 
                     <button>
-                    <Popover position="right" title="Popover title" content="Popover content right">popover right</Popover>
+                        <Popover position="right" title="Popover title" content="Popover content right">popover right</Popover>
 
                     </button>
                 </div>
 
 
-                    <div className="row">
-                        
-                    </div>
+                <div className="row">
+                    <button onClick={() => Toast.add({
+                        type: "success",
+                        title: "success",
+                        content: "This is a toast message",
+                    })}
+                    >
+                        Show Toast
+                    </button>
+                </div>
 
             </div>
 

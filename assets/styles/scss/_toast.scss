@@ -1,0 +1,18 @@
+.toast-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    width: auto;
+    height: auto;
+    
+    .toast {
+        width: auto;
+        height: auto;
+        padding: 20px;
+        border-radius: 6px;
+        background-color: white;
+        margin: 10px;
+    }
+}
