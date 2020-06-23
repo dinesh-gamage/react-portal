@@ -3,13 +3,15 @@ import PortalContainer from './Portal';
 
 interface IProps {
     show: boolean,
-    title: any,
+    title?: any,
     onOpen: any,
     onClose: any,
     backgroundDismiss?: boolean,
     closeButton?: any,
     styles?: any,
     class?: string,
+    headerContent?: any
+    showCloseButton?: boolean
 }
 
 const Modal = (props: React.PropsWithChildren<IProps>) => {
@@ -60,17 +62,28 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
                         style={...props.styles || {}}>
 
                         <div className="modal-header">
-                            <div className="modal-title"> {props.title}</div>
-                            <div className="modal-close" onClick={() => setShow(false)}>
-                                {
-                                    props.closeButton !== undefined ?
-                                        <>
-                                            {props.closeButton}
-                                        </>
-                                        :
-                                        <div className="close-btn"></div>
-                                }
-                            </div>
+                            {
+                                props.headerContent == undefined ?
+                                    <div className="modal-title"> {props.title == undefined ? "Modal" : props.title}</div>
+                                    :
+                                    <>
+                                        {props.headerContent}
+                                    </>
+                            }
+                            {
+                                props.showCloseButton &&
+                                <div className="modal-close" onClick={() => setShow(false)}>
+                                    {
+                                        props.closeButton !== undefined ?
+                                            <>
+                                                {props.closeButton}
+                                            </>
+                                            :
+                                            <div className="close-btn"></div>
+                                    }
+                                </div>
+                            }
+
                         </div>
 
                         <div className="modal-body">
@@ -95,8 +108,8 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
 }
 
 Modal.defaultProps = {
-    backgroundDismiss: true
+    backgroundDismiss: true,
+    showCloseButton: true
 }
 
 export default Modal;
-

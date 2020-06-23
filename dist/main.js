@@ -199,20 +199,25 @@ const Modal = (props) => {
                 React.createElement("div", { className: "modal-backdrop", ref: ModalBackdrop, onClick: (e) => handleClick(e) },
                     React.createElement("div", { className: `modal-panel ${props.class || ""}`, style: props.styles || {} },
                         React.createElement("div", { className: "modal-header" },
-                            React.createElement("div", { className: "modal-title" },
-                                " ",
-                                props.title),
-                            React.createElement("div", { className: "modal-close", onClick: () => setShow(false) }, props.closeButton !== undefined ?
-                                React.createElement(React.Fragment, null, props.closeButton)
+                            props.headerContent == undefined ?
+                                React.createElement("div", { className: "modal-title" },
+                                    " ",
+                                    props.title == undefined ? "Modal" : props.title)
                                 :
-                                    React.createElement("div", { className: "close-btn" }))),
+                                    React.createElement(React.Fragment, null, props.headerContent),
+                            props.showCloseButton &&
+                                React.createElement("div", { className: "modal-close", onClick: () => setShow(false) }, props.closeButton !== undefined ?
+                                    React.createElement(React.Fragment, null, props.closeButton)
+                                    :
+                                        React.createElement("div", { className: "close-btn" }))),
                         React.createElement("div", { className: "modal-body" }, props.children))))));
     };
     return (React.createElement(React.Fragment, null, show ? renderModal()
         : null));
 };
 Modal.defaultProps = {
-    backgroundDismiss: true
+    backgroundDismiss: true,
+    showCloseButton: true
 };
 exports.default = Modal;
 
