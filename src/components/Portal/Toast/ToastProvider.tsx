@@ -4,7 +4,7 @@ import PortalContainer from '../Portal';
 import Toast from './Toast';
 
 // types
-type IType = 'success' | 'error' | 'info';
+type IType = 'success' | 'error'| 'info' | 'warning';
 type IPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 // props 
@@ -17,8 +17,17 @@ interface IProps {
 
 // toast content
 interface IContent {
-    type: IType,
-    title: string | HTMLElement,
+    type?: IType,
+    title?: string | HTMLElement,
+    content: string | HTMLElement,
+    showCloseBtn?: boolean,
+    autoClose?: boolean,
+    onClose?: any,
+    closeAfter?: number,
+}
+
+interface ICustomContent {
+    title?: string | HTMLElement,
     content: string | HTMLElement,
     showCloseBtn?: boolean,
     autoClose?: boolean,
@@ -55,6 +64,7 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
         console.log(toasts);
     }, [toasts])
 
+
     // add method
     const add = (content: IContent) => {
         let id = generateId();
@@ -71,8 +81,46 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
     }
 
 
+    // toast types
+    // success
+    const success = (content: ICustomContent) => {
+        let updated = updatedContent(content, 'success');
+        return add(updated);
+    }
+
+    // error
+    const error = (content: ICustomContent) => {
+        let updated = updatedContent(content, 'error');
+        return add(updated);
+    }
+
+    // warning
+    const warning = (content: ICustomContent) => {
+        let updated = updatedContent(content, 'warning');        
+        return add(updated);
+    }
+
+    const info = (content: ICustomContent) => {
+        let updated = updatedContent(content, 'info');
+        return add(updated);
+    }
+
+    // get alert content based on type
+    const updatedContent = (content: ICustomContent, type: IType) => {
+
+        let defaults = {
+            type: type,
+            title: type.toString()
+        }
+
+        let updated:IContent = {...defaults, ...content}
+
+        return updated;
+    }
+
+
     // provider value
-    const providerValue = React.useMemo(() => { return { add, remove } }, [toasts])
+    const providerValue = React.useMemo(() => { return { success, error, warning, info, remove } }, [toasts])
 
 
     // render toast

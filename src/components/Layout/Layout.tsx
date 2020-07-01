@@ -14,7 +14,7 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
     let [showModal, setShowModal] = React.useState(false);
     let root = document.getElementById("root");
-
+    let [position, setPosition] = React.useState("bottom-right");
 
     const Toast = useToast();
 
@@ -74,19 +74,36 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
 
                 <div className="row">
-                    <button onClick={() => Toast.add({
-                        type: "success",
-                        title: "success",
-                        content: "This is a toast message",
-                        autoClose: true,
-                        closeAfter: 5000,
-                        onClose: () => console.log("Toast closed")
+                    
+                    <button onClick={() => Toast.success({
+                        content: "Success Toast Message"
                     })}
                     >
-                        Show Toast
+                        Success Toast
                     </button>
-                </div>
 
+                    <button onClick={() => Toast.error({
+                        content: "Error Toast Message"
+                    })}
+                    >
+                        Error Toast
+                    </button>
+
+                    <button onClick={() => Toast.warning({
+                        content: "Warning Toast Message"
+                    })}
+                    >
+                        Warning Toast
+                    </button>
+
+                    <button onClick={() => Toast.info({
+                        content: "Info Toast Message"
+                    })}
+                    >
+                        Info Toast
+                    </button>
+
+                </div>
             </div>
 
 

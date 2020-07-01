@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useToast } from '.';
 
 // types
-type IType = 'success' | 'error' | 'info' | "custom";
+type IType = 'success' | 'error' | 'info' | "warning";
 type IPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 interface IProps {
@@ -69,7 +69,7 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
             if (typeof props.onClose == 'function') {
                 props.onClose();
             }
-        }, 300)
+        }, 200)
 
 
     }
