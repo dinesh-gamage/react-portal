@@ -5,6 +5,7 @@ import Popover from '../Portal/PopOver';
 
 import { useToast } from '../Portal/Toast';
 import { ToastProvider } from '../Portal/Toast';
+import FilterPanel from '../Portal/FilterPanel';
 
 interface IProps {
 
@@ -74,7 +75,7 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
 
 
                 <div className="row">
-                    
+
                     <button onClick={() => Toast.success({
                         content: "Success Toast Message"
                     })}
@@ -104,6 +105,27 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
                     </button>
 
                 </div>
+
+                <div className="row">
+                    <FilterPanel onOpen={() => { }} onClose={() => { }} >
+                        <div className="fb-row">
+                            <div className="fb-label">Tenant</div>
+                            <select name="" id="" className="fb-filter">
+                                <option value="">Select a tenant</option>
+                            </select>
+                        </div>
+
+                        <div className="fb-row">
+                            <div className="fb-label">Location</div>
+                            <select name="" id="" className="fb-filter">
+                                <option value="">Select a Location</option>
+                            </select>
+                        </div>
+                    </FilterPanel>
+
+
+                </div>
+
             </div>
 
 
@@ -141,7 +163,6 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
                 </Modal>
                 : null
         }
-
 
     </>);
 }
