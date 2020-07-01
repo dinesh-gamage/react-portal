@@ -6,7 +6,8 @@ import { ToastProvider } from './components/Portal/Toast';
 const LayoutWithToast = () => {
 
     return (
-        <ToastProvider>
+        <ToastProvider 
+        >
             <Layout />
         </ToastProvider>
     )

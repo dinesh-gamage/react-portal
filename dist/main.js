@@ -389,17 +389,12 @@ const Toast = (props) => {
     // return
     return (React.createElement("div", { className: `toast ${props.type} show`, ref: ToastRef },
         React.createElement("div", { className: "icon" }),
-        React.createElement("div", { className: "toast-content" },
+        React.createElement("div", { className: `toast-content ${!props.showCloseBtn && " no-mr"} ` },
             React.createElement("div", { className: "title" }, props.title),
             React.createElement("div", { className: "content" }, props.content)),
         props.showCloseBtn ?
             React.createElement("div", { className: "close", onClick: () => { handleRemove(); } })
             : null));
-};
-Toast.defaultProps = {
-    showCloseBtn: true,
-    autoClose: true,
-    closeAfter: 5000
 };
 exports.default = Toast;
 
@@ -432,6 +427,17 @@ exports.default = ToastContext;
 
 "use strict";
 
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "react");
 const ToastContext_1 = __webpack_require__(/*! ./ToastContext */ "./src/components/Portal/Toast/ToastContext.tsx");
@@ -456,7 +462,10 @@ const ToastProvider = (props) => {
         let id = generateId();
         let date = new Date();
         let createdAt = date.getTime();
-        setToasts([...toasts, { id: id, content: content, createdAt: createdAt }]);
+        // merge default props with content except position
+        let { position } = props, rest = __rest(props, ["position"]);
+        let updatedContent = Object.assign(Object.assign({}, rest), content);
+        setToasts([...toasts, { id: id, content: updatedContent, createdAt: createdAt }]);
     };
     // remove method 
     const remove = (id) => {
@@ -506,6 +515,9 @@ const ToastProvider = (props) => {
 };
 ToastProvider.defaultProps = {
     position: 'bottom-right',
+    autoClose: true,
+    showCloseBtn: true,
+    closeAfter: 3000
 };
 exports.default = ToastProvider;
 

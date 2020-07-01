@@ -324,6 +324,9 @@ html, body, #root {
   padding: 4px;
   margin-right: 30px;
 }
+.toast-container .toast .toast-content.no-mr {
+  margin-right: 0;
+}
 .toast-container .toast .toast-content .title {
   width: auto;
   height: auto;
@@ -424,15 +427,53 @@ html, body, #root {
   right: 20px;
 }
 .toast-container.bottom-right .toast.show {
-  animation: slide-to-left 0.3s;
+  animation: slide-to-left-from-right 0.3s;
 }
 .toast-container.bottom-right .toast.hide {
-  animation: fade-to-right 0.3s;
+  animation: fade-out 0.3s;
+}
+.toast-container.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+.toast-container.bottom-left .toast.show {
+  animation: slide-to-right-from-left 0.3s;
+}
+.toast-container.bottom-left .toast.hide {
+  animation: fade-out 0.3s;
+}
+.toast-container.top-right {
+  top: 20px;
+  right: 20px;
+}
+.toast-container.top-right .toast.show {
+  animation: slide-to-left-from-right 0.3s;
+}
+.toast-container.top-right .toast.hide {
+  animation: fade-out 0.3s;
+}
+.toast-container.top-left {
+  top: 20px;
+  left: 20px;
+}
+.toast-container.top-left .toast.show {
+  animation: slide-to-right-from-left 0.3s;
+}
+.toast-container.top-left .toast.hide {
+  animation: fade-out 0.3s;
 }
 
-@keyframes slide-to-left {
+@keyframes slide-to-left-from-right {
   from {
     left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
+@keyframes slide-to-right-from-left {
+  from {
+    left: -100%;
   }
   to {
     left: 0;

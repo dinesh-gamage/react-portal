@@ -71,7 +71,11 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
         let date = new Date();
         let createdAt = date.getTime();
 
-        setToasts([...toasts, { id: id, content: content, createdAt: createdAt }]);
+        // merge default props with content except position
+        let { position, ...rest} = props;
+        let updatedContent:IContent = {...rest, ...content}
+
+        setToasts([...toasts, { id: id, content: updatedContent, createdAt: createdAt }]);
     }
 
     // remove method 
@@ -162,6 +166,9 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
 
 ToastProvider.defaultProps = {
     position: 'bottom-right',
+    autoClose: true,
+    showCloseBtn: true,
+    closeAfter: 3000
 }
 
 export default ToastProvider;

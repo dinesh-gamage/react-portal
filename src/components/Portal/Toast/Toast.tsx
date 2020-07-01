@@ -80,7 +80,7 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
 
             <div className="icon"></div>
 
-            <div className="toast-content">
+            <div className={`toast-content ${!props.showCloseBtn && " no-mr"} `}>
                 <div className="title">{props.title}</div>
                 <div className="content">{props.content}</div>
             </div>
@@ -94,12 +94,6 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
         </div >
     )
 
-}
-
-Toast.defaultProps = {
-    showCloseBtn: true,
-    autoClose: true,
-    closeAfter: 5000
 }
 
 export default Toast;
