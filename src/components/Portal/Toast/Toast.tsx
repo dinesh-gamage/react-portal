@@ -14,6 +14,7 @@ interface IProps {
     onClose?: any,
     closeAfter?: number,
     instance: string,
+    createdAt: number
 }
 
 const Toast = (props: React.PropsWithChildren<IProps>) => {
@@ -28,8 +29,29 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
     React.useEffect(() => {
 
         if (props.autoClose != undefined && props.autoClose) {
-            let timeout = setTimeout(() => { handleRemove() }, props.closeAfter);
-            return () => { clearTimeout(timeout) }
+            let closeAfter = props.closeAfter;
+            let createdAt = props.createdAt;
+
+            let now = new Date();
+            let nowTime = now.getTime();
+
+
+            if ((nowTime - createdAt) >= closeAfter) {
+                handleRemove();
+            }
+            else {
+                // cal timeout delay
+                let delay = (closeAfter - (nowTime - createdAt));
+               // alert(closeAfter + "-" + nowTime + "-" + createdAt);
+
+                let timeout = setTimeout(() => {
+                    handleRemove()
+                }, delay);
+
+                return () => { clearTimeout(timeout) }
+            }
+
+
         }
 
     }, [props.instance, remove])
@@ -47,7 +69,7 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
             if (typeof props.onClose == 'function') {
                 props.onClose();
             }
-        }, 500)
+        }, 300)
 
 
     }

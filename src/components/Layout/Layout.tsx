@@ -78,8 +78,9 @@ const Layout = (props: React.PropsWithChildren<IProps>) => {
                         type: "success",
                         title: "success",
                         content: "This is a toast message",
-                        autoClose: false,
-                        closeAfter: 3000
+                        autoClose: true,
+                        closeAfter: 5000,
+                        onClose: () => console.log("Toast closed")
                     })}
                     >
                         Show Toast

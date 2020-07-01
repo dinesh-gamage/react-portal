@@ -29,7 +29,8 @@ interface IContent {
 // toast 
 interface IToast {
     id: string,
-    content: IContent
+    content: IContent,
+    createdAt: number
 }
 
 // create a random id
@@ -57,8 +58,10 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
     // add method
     const add = (content: IContent) => {
         let id = generateId();
+        let date = new Date();
+        let createdAt = date.getTime();
 
-        setToasts([...toasts, { id: id, content: content }]);
+        setToasts([...toasts, { id: id, content: content, createdAt: createdAt }]);
     }
 
     // remove method 
@@ -85,6 +88,7 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
                 instance={toast.id}
                 closeAfter={toast.content.closeAfter}
                 key={key}
+                createdAt={toast.createdAt}
             />
         );
     }
@@ -108,7 +112,7 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
 
 }
 
-ToastProvider.defaultProps ={
+ToastProvider.defaultProps = {
     position: 'bottom-right',
 }
 

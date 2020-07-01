@@ -111,16 +111,18 @@ $successColor: #52c9a9;
 
         .toast {
             &.show {
-                animation: slide-in-right 0.6s;
+                animation: slide-to-left 0.3s;
+                animation-fill-mode: forwards;
             }
             &.hide {
-                animation: slide-to-right 0.6s;
+                animation: slide-to-right 0.3s;
+                animation-fill-mode: forwards;
             }
         }
     }
 }
 
-@keyframes slide-in-right {
+@keyframes slide-to-left {
     from {
         left: 100%;
     }
@@ -135,5 +137,14 @@ $successColor: #52c9a9;
     }
     to {
         left: 100%;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
