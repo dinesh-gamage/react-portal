@@ -16,16 +16,13 @@ interface IProps {
 
 const Modal = (props: React.PropsWithChildren<IProps>) => {
 
-    // states
-    const [show, setShow] = React.useState(props.show);
-
     // ref 
     const ModalBackdrop = React.useRef(null);
 
     // callback on change show state
     React.useEffect(() => {
-        show ? onOpen() : onClose()
-    }, [show])
+        props.show ? onOpen() : onClose()
+    }, [props.show])
 
 
     //on modal toggle
@@ -47,7 +44,7 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
     const handleClick = (e: React.MouseEvent) => {
         if (props.backgroundDismiss != undefined && props.backgroundDismiss) {
             if (e.target == ModalBackdrop.current) {
-                setShow(false);
+                onClose();
             }
         }
     }
@@ -72,7 +69,7 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
                             }
                             {
                                 props.showCloseButton &&
-                                <div className="modal-close" onClick={() => setShow(false)}>
+                                <div className="modal-close" onClick={onClose}>
                                     {
                                         props.closeButton !== undefined ?
                                             <>
@@ -100,8 +97,7 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
 
     return (<>
         {
-            show ? renderModal()
-                : null
+          renderModal()
         }
 
     </>)

@@ -56,19 +56,25 @@ $closeIcon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvM
             justify-content: space-between;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-            .modal-close {
-                width: 30px;
-                height: 30px;
-                border-radius: 30px;
-                background-color: white;
-                background-image: url($closeIcon);
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: 30%;
-                cursor: pointer;
+            .modal-title {
+                
+            }
 
-                &:hover {
-                    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.12);
+            .modal-close {
+                .close-btn {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 30px;
+                    background-color: white;
+                    background-image: url($closeIcon);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 30%;
+                    cursor: pointer;
+
+                    &:hover {
+                        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.12);
+                    }
                 }
             }
         }
@@ -83,5 +89,20 @@ $closeIcon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvM
             overflow-x: hidden;
             margin-bottom: 30px;
         }
+
+        &.config-modal {
+            .modal-body {
+                margin-bottom: 0;
+                padding: 0px 20px;
+            }
+        }
     }
+}
+
+.blurred {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
 }
