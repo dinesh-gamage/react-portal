@@ -1,0 +1,126 @@
+@import "./animation_mixin";
+
+// mixin
+@mixin modalSlideStart($scale, $fade, $origin) {
+    @include transformOrigin($origin);
+    @include scale($scale);
+
+    .modal-backdrop {
+        @include fade($fade);
+    }
+}
+
+@mixin modalSlideEnd($scale, $fade, $timeout, $delay) {
+    @include scale($scale);
+    transition: all 300ms ease-in;
+
+    .modal-backdrop {
+        @include fade($fade);
+        transition: all $timeout ease-in $delay;
+    }
+}
+
+// slide - from/to right top
+.m-slide-ftr-enter {
+    @include modalSlideStart(0, 0, top right);
+}
+
+.m-slide-ftr-enter-active {
+    @include modalSlideEnd(1, 1, 100ms, 200ms);
+}
+
+.m-slide-ftr-exit {
+    @include modalSlideStart(1, 1, top right);
+}
+
+.m-slide-ftr-exit-active {
+    @include modalSlideEnd(0, 0, 50ms, 0ms);
+}
+
+// slide - from/to left top
+.m-slide-ftl-enter {
+    @include modalSlideStart(0, 0, top left);
+}
+
+.m-slide-ftl-enter-active {
+    @include modalSlideEnd(1, 1, 100ms, 200ms);
+}
+
+.m-slide-ftl-exit {
+    @include modalSlideStart(1, 1, top left);
+}
+
+.m-slide-ftl-exit-active {
+    @include modalSlideEnd(0, 0, 50ms, 0ms);
+}
+
+// slide - from/to left bottom
+.m-slide-fbl-enter {
+    @include modalSlideStart(0, 0, bottom left);
+}
+
+.m-slide-fbl-enter-active {
+    @include modalSlideEnd(1, 1, 100ms, 200ms);
+}
+
+.m-slide-fbl-exit {
+    @include modalSlideStart(1, 1, bottom left);
+}
+
+.m-slide-fbl-exit-active {
+    @include modalSlideEnd(0, 0, 50ms, 0ms);
+}
+
+// slide - from/to right bottom
+.m-slide-fbr-enter {
+    @include modalSlideStart(0, 0, bottom right);
+}
+
+.m-slide-fbr-enter-active {
+    @include modalSlideEnd(1, 1, 100ms, 200ms);
+}
+
+.m-slide-fbr-exit {
+    @include modalSlideStart(1, 1, bottom right);
+}
+
+.m-slide-fbr-exit-active {
+    @include modalSlideEnd(0, 0, 50ms, 0ms);
+}
+
+// zoom in from center
+.m-zoom-fc-enter {
+    @include scale(0);
+
+    .modal-backdrop {
+        @include fade(0);
+    }
+}
+
+.m-zoom-fc-enter-active {
+    @include scale(1);
+    transition: all 300ms ease-in;
+
+    .modal-backdrop {
+        @include fade(1);
+        transition: all 100ms ease-in 200ms;
+    }
+}
+
+.m-zoom-fc-exit {
+    @include scale(1);
+
+    .modal-backdrop {
+        @include fade(1);
+    }
+}
+
+.m-zoom-fc-exit-active {
+    @include scale(0);
+    transition: all 300ms ease-in;
+
+    .modal-backdrop {
+        @include fade(0);
+        transition: all 50ms ease-in;
+    }
+}

@@ -1,17 +1,22 @@
 import * as React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import PortalContainer from './Portal';
 
+type IAnimation = 'm-slide-ftr' | 'm-slide-ftl' | 'm-slide-fbr' | 'm-slide-fbl' | 'm-zoom-fc';
 interface IProps {
     show: boolean,
-    title?: any,
     onOpen: any,
     onClose: any,
-    backgroundDismiss?: boolean,
+    title?: any,
     closeButton?: any,
     styles?: any,
     class?: string,
     headerContent?: any
-    showCloseButton?: boolean
+    backgroundDismiss?: boolean,
+    showCloseButton?: boolean,
+    showBackdrop?: boolean
+    backdropBG?: string,
+    animation?: IAnimation
 }
 
 const Modal = (props: React.PropsWithChildren<IProps>) => {
@@ -49,12 +54,30 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
         }
     }
 
-    const renderModal = () => {
-        return (<>
+    // modal backdrop styles
+    let styles: any = {}
+    if (props.showBackdrop) {
+        if (props.backdropBG?.trim().length > 0) {
+            styles.backgroundColor = props.backdropBG.trim();
+        }
+    }
+    else {
+        styles.backgroundColor = "transparent";
+    }
+
+    return (<>
+        <CSSTransition
+            in={props.show}
+            timeout={300}
+            classNames={props.animation}
+            unmountOnExit={true}
+        >
             <PortalContainer>
+                <div className="modal-container">
+                    {/* backdrop */}
+                    <div className="modal-backdrop" ref={ModalBackdrop} onClick={(e) => handleClick(e)} style={styles} ></div>
 
-                <div className="modal-backdrop" ref={ModalBackdrop} onClick={(e) => handleClick(e)} >
-
+                    {/* modal */}
                     <div className={`modal-panel ${props.class || ""}`}
                         style={...props.styles || {}}>
 
@@ -90,22 +113,18 @@ const Modal = (props: React.PropsWithChildren<IProps>) => {
                     </div>
 
                 </div>
-
             </PortalContainer>
-        </>);
-    }
-
-    return (<>
-        {
-          renderModal()
-        }
-
+        </CSSTransition>
     </>)
 }
 
+// default props
 Modal.defaultProps = {
+    title: "Modal",
     backgroundDismiss: true,
-    showCloseButton: true
+    showCloseButton: true,
+    showBackdrop: true,
+    animation: "m-zoom-fc"
 }
 
 export default Modal;

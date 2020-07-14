@@ -1,0 +1,11 @@
+@mixin scale($scaleTo) {
+    transform: scale($scaleTo);
+}
+
+@mixin transformOrigin($origin) {
+    transform-origin: $origin;
+}
+
+@mixin fade($fade) {
+    opacity: $fade;
+}
