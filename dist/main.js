@@ -3323,6 +3323,7 @@ const Layout = (props) => {
     let root = document.getElementById("root");
     let [position, setPosition] = React.useState("bottom-right");
     const Toast = Toast_1.useToast();
+    let widgetRef = React.useRef(null);
     const onOpenModal = () => {
         console.log("opening modal");
     };
@@ -3394,51 +3395,83 @@ exports.default = Layout;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "react");
 const Portal_1 = __webpack_require__(/*! ./Portal */ "./src/components/Portal/Portal.tsx");
-const Tooltip_1 = __webpack_require__(/*! ./Tooltip */ "./src/components/Portal/Tooltip.tsx");
+const react_transition_group_1 = __webpack_require__(/*! react-transition-group */ "./node_modules/react-transition-group/esm/index.js");
 function FilterPanel(props) {
     // states
-    let [shopPanel, setShopPanel] = React.useState(false);
+    let [showPanel, setShowPanel] = React.useState(false);
     let [coords, setCoords] = React.useState({});
+    let filterPanelRef = React.useRef(null);
+    let filterButtonRef = React.useRef(null);
     // update coordinates of filter panel
     const updateTooltipCoords = (button) => {
         const buttonDetails = button.getBoundingClientRect();
         let _coords = {
             top: buttonDetails.y + window.scrollY - 15,
-            right: buttonDetails.x - 15,
+            right: window.innerWidth - buttonDetails.right - 15,
         };
+        if (props.fillContainer !== null) {
+            const container = props.fillContainer.current;
+            const containerDetails = container.getBoundingClientRect();
+            _coords = {
+                top: containerDetails.top,
+                left: containerDetails.left,
+                width: containerDetails.width,
+                height: containerDetails.height
+            };
+        }
         setCoords(_coords);
     };
     // callbacks
     const onOpenPanel = () => {
-        setShopPanel(true);
+        setShowPanel(true);
         if (typeof props.onOpen == "function") {
             props.onOpen();
         }
     };
     const onClosePanel = () => {
-        setShopPanel(false);
+        setShowPanel(false);
         if (typeof props.onClose == "function") {
             props.onClose();
         }
     };
+    const onClear = () => {
+        if (typeof props.onClear == "function") {
+            props.onClear();
+        }
+    };
+    // on click modal or backdrop 
+    const handleClick = (e) => {
+        var _a, _b;
+        if (e.target != filterPanelRef.current && !((_a = filterPanelRef.current) === null || _a === void 0 ? void 0 : _a.contains(e.target)) && e.target != filterButtonRef.current && !((_b = filterButtonRef.current) === null || _b === void 0 ? void 0 : _b.contains(e.target))) {
+            setShowPanel(false);
+        }
+    };
+    document.addEventListener("click", (e) => handleClick(e));
+    // render
     return (React.createElement(React.Fragment, null,
-        React.createElement(Tooltip_1.default, { content: "Filter Panel" },
-            React.createElement("div", { className: "filter-panel-btn fpb-burger-menu", onClick: (e) => {
-                    updateTooltipCoords(e.target);
-                    onOpenPanel();
-                } },
-                React.createElement("div", { className: "icon" }))),
-        shopPanel &&
+        React.createElement("div", { className: "filter-panel-btn", onClick: (e) => {
+                updateTooltipCoords(e.target);
+                onOpenPanel();
+            }, ref: filterButtonRef },
+            React.createElement("div", { className: "icon" })),
+        React.createElement(react_transition_group_1.CSSTransition, { in: showPanel, timeout: 200, classNames: "f-fade", unmountOnExit: true },
             React.createElement(Portal_1.default, null,
-                React.createElement("div", { className: "filter-panel", style: coords },
+                React.createElement("div", { className: `filter-panel ${props.class != null && props.class}`, style: coords, ref: filterPanelRef },
                     React.createElement("div", { className: "filter-header" },
-                        React.createElement("div", { className: "fh-title" },
-                            React.createElement("div", { className: "fht-icon" }),
-                            React.createElement("div", { className: "fht-text" }, "Filters")),
-                        React.createElement("div", { className: "burger-menu-btn", onClick: onClosePanel },
+                        React.createElement("div", { className: "title" },
+                            React.createElement("div", { className: "icon" }),
+                            React.createElement("div", { className: "text" }, "Filters")),
+                        React.createElement("div", { className: "icon-container", onClick: onClosePanel },
                             React.createElement("div", { className: "icon" }))),
-                    React.createElement("div", { className: "filter-body" }, props.children)))));
+                    React.createElement("div", { className: "filter-body" }, props.children),
+                    React.createElement("div", { className: "filter-footer" },
+                        React.createElement("button", { className: "clear-filter", onClick: onClear },
+                            React.createElement("div", { className: "icon" }),
+                            React.createElement("div", { className: "text" }, "Clear"))))))));
 }
+FilterPanel.defaultProps = {
+    fillContainer: null,
+};
 exports.default = FilterPanel;
 
 
@@ -3545,6 +3578,8 @@ const Popover = (props) => {
     // state 
     const [show, setShow] = React.useState(false);
     const [coords, setCoords] = React.useState({});
+    const popoverButtonRef = React.useRef(null);
+    const popoverRef = React.useRef(null);
     // toggle tooltip
     const toggleTooltip = (button) => {
         const buttonDetails = button.getBoundingClientRect();
@@ -3579,15 +3614,23 @@ const Popover = (props) => {
         setCoords(_coords);
         setShow(!show);
     };
+    // on click modal or backdrop 
+    const handleClick = (e) => {
+        var _a, _b;
+        if (e.target != popoverButtonRef.current && !((_a = popoverButtonRef.current) === null || _a === void 0 ? void 0 : _a.contains(e.target)) && e.target != popoverRef.current && !((_b = popoverRef.current) === null || _b === void 0 ? void 0 : _b.contains(e.target))) {
+            setShow(false);
+        }
+    };
+    document.addEventListener("click", (e) => handleClick(e));
     // render tooltip
     const renderTooltip = () => {
         return (React.createElement(Portal_1.default, null,
-            React.createElement("div", { className: `popover-content ${props.position || "top"} `, style: coords },
+            React.createElement("div", { className: `popover-content ${props.position || "top"} `, style: coords, ref: popoverRef },
                 React.createElement("div", { className: "title" }, props.title),
                 React.createElement("div", { className: "content" }, props.content))));
     };
     return (React.createElement(React.Fragment, null,
-        React.createElement("span", { className: "popover", onClick: (e) => toggleTooltip(e.target) }, props.children),
+        React.createElement("span", { className: "popover", onClick: (e) => toggleTooltip(e.target), ref: popoverButtonRef }, props.children),
         show ?
             renderTooltip()
             : null));

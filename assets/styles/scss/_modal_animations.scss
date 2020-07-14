@@ -1,6 +1,15 @@
-@import "./animation_mixin";
-
 // mixin
+@mixin scale($scaleTo) {
+    transform: scale($scaleTo);
+}
+
+@mixin transformOrigin($origin) {
+    transform-origin: $origin;
+}
+
+@mixin fade($fade) {
+    opacity: $fade;
+}
 @mixin modalSlideStart($scale, $fade, $origin) {
     @include transformOrigin($origin);
     @include scale($scale);

@@ -22,6 +22,9 @@ const Popover = (props: React.PropsWithChildren<IProps>) => {
     const [show, setShow] = React.useState(false)
     const [coords, setCoords] = React.useState<ICoords | {}>({})
 
+    const popoverButtonRef = React.useRef(null);
+    const popoverRef = React.useRef(null);
+
     // toggle tooltip
     const toggleTooltip = (button: HTMLButtonElement) => {
         const buttonDetails = button.getBoundingClientRect();
@@ -64,11 +67,21 @@ const Popover = (props: React.PropsWithChildren<IProps>) => {
         setShow(!show);
     }
 
+    // on click modal or backdrop 
+    const handleClick = (e: MouseEvent) => {
+        if (e.target != popoverButtonRef.current && !popoverButtonRef.current?.contains(e.target) && e.target != popoverRef.current && !popoverRef.current?.contains(e.target)) {
+            setShow(false)
+        }
+    }
+
+    document.addEventListener("click", (e) => handleClick(e))
     // render tooltip
     const renderTooltip = () => {
         return (<PortalContainer>
 
-            <div className={`popover-content ${props.position || "top"} `} style={coords} >
+            <div className={`popover-content ${props.position || "top"} `} style={coords} 
+                ref={popoverRef}
+            >
                 <div className="title">{props.title}</div>
                 <div className="content">
                     {props.content}
@@ -81,6 +94,7 @@ const Popover = (props: React.PropsWithChildren<IProps>) => {
     return (<>
         <span className="popover"
             onClick={(e) => toggleTooltip(e.target as HTMLButtonElement)}
+            ref={popoverButtonRef}
         >
             {props.children}
         </span>

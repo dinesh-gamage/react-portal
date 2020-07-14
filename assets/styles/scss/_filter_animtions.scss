@@ -1,0 +1,37 @@
+// mixin
+@mixin scale($scaleTo) {
+    transform: scale($scaleTo);
+}
+
+@mixin transformOrigin($origin) {
+    transform-origin: $origin;
+}
+
+@mixin fade($fade) {
+    opacity: $fade;
+}
+@mixin fadeStart($fade) {
+    @include fade($fade);
+}
+
+@mixin fadeEnd($fade, $timeout, $delay) {
+    @include fade($fade);
+    transition: all $timeout ease-in $delay;
+}
+
+// slide - from/to right top
+.f-fade-enter {
+    @include fadeStart(0);
+}
+
+.f-fade-enter-active {
+    @include fadeEnd(1, 300ms, 0ms);
+}
+
+.f-fade-exit {
+    @include fadeStart(1);
+}
+
+.f-fade-exit-active {
+    @include fadeEnd(0, 300ms, 0ms);
+}
