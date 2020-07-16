@@ -99,7 +99,9 @@ function FilterPanel(props: React.PropsWithChildren<IProps>) {
             }}
             ref={filterButtonRef}
         >
-            <div className="icon"></div>
+            <div className="icon-container">
+                <div className="icon"></div>
+            </div>
         </div>
 
         <CSSTransition
@@ -133,7 +135,9 @@ function FilterPanel(props: React.PropsWithChildren<IProps>) {
 
                     <div className="filter-footer">
                         <button className="clear-filter" onClick={onClear}>
-                            <div className="icon"></div>
+                            <div className="icon-container">
+                                <div className="icon"></div>
+                            </div>
                             <div className="text">Clear</div>
                         </button>
                     </div>

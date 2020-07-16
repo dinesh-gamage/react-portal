@@ -8,6 +8,10 @@ body,
   background-color: rgba(219, 219, 219, 0.12);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -71,6 +75,20 @@ body,
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.cont {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  background-color: gray;
+}
+.cont .header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .modal-container {
@@ -544,14 +562,29 @@ body,
   cursor: pointer;
   overflow: hidden;
   padding: 0;
+  transition: all 0.1s ease-in;
 }
-.filter-panel-btn .icon {
+.filter-panel-btn .icon-container {
+  width: 100%;
+  height: 100%;
+}
+.filter-panel-btn .icon-container .icon {
   width: 100%;
   height: 100%;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHRpdGxlPmlvbmljb25zLXY1LW48L3RpdGxlPjxwYXRoIGQ9Ik0yOTYsNDY0YTIzLjg4LDIzLjg4LDAsMCwxLTcuNTUtMS4yM2wtODAuMTUtMjYuNjdBMjMuOTIsMjMuOTIsMCwwLDEsMTkyLDQxMy4zMlYyOTQuMTFhLjQ0LjQ0LDAsMCwwLS4wOS0uMTNMMjMuMjYsOTcuNTRBMzAsMzAsMCwwLDEsNDYuMDUsNDhINDY2YTMwLDMwLDAsMCwxLDIyLjc5LDQ5LjU0TDMyMC4wOSwyOTRhLjc3Ljc3LDAsMCwwLS4wOS4xM1Y0NDBhMjMuOTMsMjMuOTMsMCwwLDEtMjQsMjRaIi8+PC9zdmc+");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40%;
+}
+.filter-panel-btn:hover {
+  background-color: #52c4c9;
+  transform: rotate(-45deg);
+}
+.filter-panel-btn:hover .icon-container {
+  background-color: transparent;
+}
+.filter-panel-btn:hover .icon-container .icon {
+  filter: saturate(100%) brightness(0) invert(1);
 }
 
 .filter-panel {
@@ -564,16 +597,22 @@ body,
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.12);
+  margin: 0;
+  padding: 50px 0;
 }
 .filter-panel * {
   box-sizing: border-box;
 }
 .filter-panel .filter-header {
-  padding: 15px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
+  padding: 0 15px;
 }
 .filter-panel .filter-header .title {
   width: auto;
@@ -616,11 +655,29 @@ body,
 }
 .filter-panel .filter-body {
   width: 100%;
+  height: auto;
+  max-height: 100%;
   padding: 15px 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* width */
+  /* Track */
+  /* Handle */
+}
+.filter-panel .filter-body::-webkit-scrollbar {
+  width: 2px;
+}
+.filter-panel .filter-body::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+.filter-panel .filter-body::-webkit-scrollbar-thumb {
+  background: #424242;
 }
 .filter-panel .filter-footer {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  padding: 15px 10px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -638,9 +695,13 @@ body,
   align-items: center;
   cursor: pointer;
 }
-.filter-panel .filter-footer .clear-filter .icon {
+.filter-panel .filter-footer .clear-filter .icon-container {
   width: 20px;
   height: 20px;
+}
+.filter-panel .filter-footer .clear-filter .icon-container .icon {
+  width: 100%;
+  height: 100%;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHRpdGxlPmlvbmljb25zLXY1LW48L3RpdGxlPjxwYXRoIGQ9Ik0yOTYsNDY0YTIzLjg4LDIzLjg4LDAsMCwxLTcuNTUtMS4yM2wtODAuMTUtMjYuNjdBMjMuOTIsMjMuOTIsMCwwLDEsMTkyLDQxMy4zMlYyOTQuMTFhLjQ0LjQ0LDAsMCwwLS4wOS0uMTNMMjMuMjYsOTcuNTRBMzAsMzAsMCwwLDEsNDYuMDUsNDhINDY2YTMwLDMwLDAsMCwxLDIyLjc5LDQ5LjU0TDMyMC4wOSwyOTRhLjc3Ljc3LDAsMCwwLS4wOS4xM1Y0NDBhMjMuOTMsMjMuOTMsMCwwLDEtMjQsMjRaIi8+PC9zdmc+");
   background-position: center;
   background-repeat: no-repeat;
@@ -651,7 +712,17 @@ body,
   color: #424242;
 }
 .filter-panel .filter-footer .clear-filter:hover {
-  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.12);
+  background-color: #52c4c9;
+  color: white;
+}
+.filter-panel .filter-footer .clear-filter:hover .icon-container {
+  background-color: transparent;
+}
+.filter-panel .filter-footer .clear-filter:hover .icon-container .icon {
+  filter: saturate(100%) brightness(0) invert(1);
+}
+.filter-panel .filter-footer .clear-filter:hover .text {
+  color: white;
 }
 @keyframes animate {
   from {
