@@ -348,6 +348,8 @@ body,
   max-height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
+  z-index: 9999;
+  padding: 15px;
   /* width */
 }
 .toast-container::-webkit-scrollbar {
@@ -365,14 +367,15 @@ body,
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.12);
 }
 .toast-container .toast .icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   background-color: transparent;
   display: none;
   margin-right: 10px;
+  border: none;
 }
 .toast-container .toast .toast-content {
   width: auto;
@@ -422,11 +425,10 @@ body,
 }
 .toast-container .toast.success .icon {
   display: block;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMS4wNTciIGhlaWdodD0iNy45MDUiIHZpZXdCb3g9IjAgMCAxMS4wNTcgNy45MDUiPjxkZWZzPjxzdHlsZT4uYXtmaWxsOm5vbmU7c3Ryb2tlOiM0MjQyNDI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDoycHg7b3BhY2l0eTowLjU0O308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iYSIgZD0iTTcwMS4yNTksMzc1Ljg3MmwyLjcyMiwyLjc3MSw1LjUwNy01LjQ5MSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTY5OS44NDUgLTM3MS43MzcpIi8+PC9zdmc+");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHRpdGxlPmlvbmljb25zLXY1LWU8L3RpdGxlPjxwYXRoIGQ9Ik00NDgsMjU2YzAtMTA2LTg2LTE5Mi0xOTItMTkyUzY0LDE1MCw2NCwyNTZzODYsMTkyLDE5MiwxOTJTNDQ4LDM2Miw0NDgsMjU2WiIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbWl0ZXJsaW1pdDoxMDtzdHJva2Utd2lkdGg6MzJweCIvPjxwb2x5bGluZSBwb2ludHM9IjM1MiAxNzYgMjE3LjYgMzM2IDE2MCAyNzIiIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDA7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDozMnB4Ii8+PC9zdmc+");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
-  border: 1px solid #52c9a9;
+  background-size: contain;
   filter: saturate(100%) brightness(0%) invert(79%) sepia(8%) saturate(2573%) hue-rotate(111deg) brightness(92%) contrast(77%);
 }
 .toast-container .toast.success .toast-content .title {
@@ -437,11 +439,10 @@ body,
 }
 .toast-container .toast.error .icon {
   display: block;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS42NyAxNS42NyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiNjY2M7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDozcHg7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iMTQuMTciIHkxPSIxLjUiIHgyPSIxLjUiIHkyPSIxNC4xNyIvPjxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjE0LjE3IiB5MT0iMTQuMTciIHgyPSIxLjUiIHkyPSIxLjUiLz48L2c+PC9nPjwvc3ZnPg==");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHRpdGxlPmlvbmljb25zLXY1LW08L3RpdGxlPjxwYXRoIGQ9Ik00NDgsMjU2YzAtMTA2LTg2LTE5Mi0xOTItMTkyUzY0LDE1MCw2NCwyNTZzODYsMTkyLDE5MiwxOTJTNDQ4LDM2Miw0NDgsMjU2WiIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbWl0ZXJsaW1pdDoxMDtzdHJva2Utd2lkdGg6MzJweCIvPjxsaW5lIHgxPSIzMjAiIHkxPSIzMjAiIHgyPSIxOTIiIHkyPSIxOTIiIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDA7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDozMnB4Ii8+PGxpbmUgeDE9IjE5MiIgeTE9IjMyMCIgeDI9IjMyMCIgeTI9IjE5MiIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLXdpZHRoOjMycHgiLz48L3N2Zz4=");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
-  border: 1px solid #f03535;
+  background-size: contain;
   filter: brightness(0) saturate(100%) invert(26%) sepia(51%) saturate(3968%) hue-rotate(345deg) brightness(97%) contrast(93%);
 }
 .toast-container .toast.error .toast-content .title {
@@ -455,23 +456,21 @@ body,
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYWxlcnQtdHJpYW5nbGUiPjxwYXRoIGQ9Ik0xMC4yOSAzLjg2TDEuODIgMThhMiAyIDAgMCAwIDEuNzEgM2gxNi45NGEyIDIgMCAwIDAgMS43MS0zTDEzLjcxIDMuODZhMiAyIDAgMCAwLTMuNDIgMHoiPjwvcGF0aD48bGluZSB4MT0iMTIiIHkxPSI5IiB4Mj0iMTIiIHkyPSIxMyI+PC9saW5lPjxsaW5lIHgxPSIxMiIgeTE9IjE3IiB4Mj0iMTIuMDEiIHkyPSIxNyI+PC9saW5lPjwvc3ZnPg==");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 70%;
-  border: 1px solid #F58220;
+  background-size: contain;
   filter: saturate(100%) brightness(0%) invert(74%) sepia(39%) saturate(5567%) hue-rotate(342deg) brightness(95%) contrast(102%);
 }
 .toast-container .toast.warning .toast-content .title {
-  color: #F58220;
+  color: #f58220;
 }
 .toast-container .toast.warning .toast-content .content {
-  color: #F58220;
+  color: #f58220;
 }
 .toast-container .toast.info .icon {
   display: block;
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxwYXRoIGQ9Ik00NDggODA0YTY0IDY0IDAgMSAwIDEyOCAwIDY0IDY0IDAgMSAwLTEyOCAwem0zMi0xNjhoNjRjNC40IDAgOC0zLjYgOC04VjE2NGMwLTQuNC0zLjYtOC04LThoLTY0Yy00LjQgMC04IDMuNi04IDh2NDY0YzAgNC40IDMuNiA4IDggOHoiLz4KPC9zdmc+Cg==");
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxwYXRoIGQ9Ik01MTIgNjRDMjY0LjYgNjQgNjQgMjY0LjYgNjQgNTEyczIwMC42IDQ0OCA0NDggNDQ4IDQ0OC0yMDAuNiA0NDgtNDQ4Uzc1OS40IDY0IDUxMiA2NHptMCA4MjBjLTIwNS40IDAtMzcyLTE2Ni42LTM3Mi0zNzJzMTY2LjYtMzcyIDM3Mi0zNzIgMzcyIDE2Ni42IDM3MiAzNzItMTY2LjYgMzcyLTM3MiAzNzJ6Ii8+CiAgPHBhdGggZD0iTTQ2NCAzMzZhNDggNDggMCAxIDAgOTYgMCA0OCA0OCAwIDEgMC05NiAwem03MiAxMTJoLTQ4Yy00LjQgMC04IDMuNi04IDh2MjcyYzAgNC40IDMuNiA4IDggOGg0OGM0LjQgMCA4LTMuNiA4LThWNDU2YzAtNC40LTMuNi04LTgtOHoiLz4KPC9zdmc+Cg==");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
-  border: 1px solid #5752c9;
+  background-size: contain;
   filter: saturate(100%) brightness(0%) invert(28%) sepia(84%) saturate(1606%) hue-rotate(228deg) brightness(87%) contrast(83%);
 }
 .toast-container .toast.info .toast-content .title {
@@ -485,40 +484,48 @@ body,
   right: 20px;
 }
 .toast-container.bottom-right .toast.show {
-  animation: slide-to-left-from-right 0.3s;
+  animation: slide-to-left-from-right 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.bottom-right .toast.hide {
-  animation: fade-out 0.3s;
+  animation: slide-to-right 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.bottom-left {
   bottom: 20px;
   left: 20px;
 }
 .toast-container.bottom-left .toast.show {
-  animation: slide-to-right-from-left 0.3s;
+  animation: slide-to-right-from-left 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.bottom-left .toast.hide {
-  animation: fade-out 0.3s;
+  animation: slide-to-left 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.top-right {
   top: 20px;
   right: 20px;
 }
 .toast-container.top-right .toast.show {
-  animation: slide-to-left-from-right 0.3s;
+  animation: slide-to-left-from-right 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.top-right .toast.hide {
-  animation: fade-out 0.3s;
+  animation: slide-to-right 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.top-left {
   top: 20px;
   left: 20px;
 }
 .toast-container.top-left .toast.show {
-  animation: slide-to-right-from-left 0.3s;
+  animation: slide-to-right-from-left 300ms;
+  animation-fill-mode: forwards;
 }
 .toast-container.top-left .toast.hide {
-  animation: fade-out 0.3s;
+  animation: slide-to-left 300ms;
+  animation-fill-mode: forwards;
 }
 
 @keyframes slide-to-left-from-right {
@@ -543,6 +550,14 @@ body,
   }
   to {
     left: 100%;
+  }
+}
+@keyframes slide-to-left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
   }
 }
 @keyframes fade-out {

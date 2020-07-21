@@ -1,7 +1,8 @@
 import * as React from 'react';
 import ToastContext from './ToastContext';
-import PortalContainer from '../Portal';
+import PortalContainer from '../Portal/Portal';
 import Toast from './Toast';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 // types
 type IType = 'success' | 'error'| 'info' | 'warning';
@@ -26,7 +27,7 @@ interface IContent {
     closeAfter?: number,
 }
 
-interface ICustomContent {
+interface IPartialContent {
     title?: string | HTMLElement,
     content: string | HTMLElement,
     showCloseBtn?: boolean,
@@ -79,38 +80,37 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
     }
 
     // remove method 
-    const remove = (id: string) => {
-        console.log(id);
-        setToasts(toasts.filter((toast: any) => toast.id != id))
-    }
+    const remove = React.useCallback((id: string) => {
+        setToasts(toasts => toasts.filter((toast: IToast) => toast.id !== id))
+    }, [])
 
 
     // toast types
     // success
-    const success = (content: ICustomContent) => {
+    const success = (content: IPartialContent) => {
         let updated = updatedContent(content, 'success');
         return add(updated);
     }
 
     // error
-    const error = (content: ICustomContent) => {
+    const error = (content: IPartialContent) => {
         let updated = updatedContent(content, 'error');
         return add(updated);
     }
 
     // warning
-    const warning = (content: ICustomContent) => {
+    const warning = (content: IPartialContent) => {
         let updated = updatedContent(content, 'warning');        
         return add(updated);
     }
 
-    const info = (content: ICustomContent) => {
+    const info = (content: IPartialContent) => {
         let updated = updatedContent(content, 'info');
         return add(updated);
     }
 
     // get alert content based on type
-    const updatedContent = (content: ICustomContent, type: IType) => {
+    const updatedContent = (content: IPartialContent, type: IType) => {
 
         let defaults = {
             type: type,
@@ -129,20 +129,18 @@ const ToastProvider = (props: React.PropsWithChildren<IProps>) => {
 
     // render toast
     const renderToast = (toast: IToast, key: number) => {
-        return (
-            <Toast
-                type={toast.content.type}
-                title={toast.content.title}
-                content={toast.content.content}
-                onClose={toast.content.onClose || null}
-                showCloseBtn={toast.content.showCloseBtn}
-                autoClose={toast.content.autoClose}
-                instance={toast.id}
-                closeAfter={toast.content.closeAfter}
-                key={key}
-                createdAt={toast.createdAt}
-            />
-        );
+        return (<Toast
+            type={toast.content.type}
+            title={toast.content.title}
+            content={toast.content.content}
+            onClose={toast.content.onClose || null}
+            showCloseBtn={toast.content.showCloseBtn}
+            autoClose={toast.content.autoClose}
+            instance={toast.id}
+            closeAfter={toast.content.closeAfter}
+            key={toast.id}
+            createdAt={toast.createdAt}
+        />);
     }
 
     // return 
@@ -168,7 +166,7 @@ ToastProvider.defaultProps = {
     position: 'bottom-right',
     autoClose: true,
     showCloseBtn: true,
-    closeAfter: 3000
+    closeAfter: 5000
 }
 
 export default ToastProvider;

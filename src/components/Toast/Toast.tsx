@@ -17,7 +17,7 @@ interface IProps {
     createdAt: number
 }
 
-const Toast = (props: React.PropsWithChildren<IProps>) => {
+const Toast = React.memo((props: React.PropsWithChildren<IProps>) => {
 
     // toast remove method
     const { remove } = useToast();
@@ -42,7 +42,7 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
             else {
                 // cal timeout delay
                 let delay = (closeAfter - (nowTime - createdAt));
-               // alert(closeAfter + "-" + nowTime + "-" + createdAt);
+                // alert(closeAfter + "-" + nowTime + "-" + createdAt);
 
                 let timeout = setTimeout(() => {
                     handleRemove()
@@ -69,9 +69,14 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
             if (typeof props.onClose == 'function') {
                 props.onClose();
             }
-        }, 200)
+        }, 300)
 
 
+        // remove(props.instance)
+
+        // if (typeof props.onClose == 'function') {
+        //     props.onClose();
+        // }
     }
 
     // return
@@ -94,6 +99,6 @@ const Toast = (props: React.PropsWithChildren<IProps>) => {
         </div >
     )
 
-}
+});
 
 export default Toast;
